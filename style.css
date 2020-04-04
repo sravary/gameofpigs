@@ -35,7 +35,7 @@
 #dice-2 { top: 250px; }
 
 body {
-    background-image: linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)), url(back.jpg);
+    background-image: linear-gradient(rgba(54, 54, 54, 0.4), rgba(255, 255, 255, 0.219)), url(back.jpg);
     background-size: cover;
     background-position: center;
     font-family: Lato;
@@ -156,8 +156,8 @@ i {
     transition: margin 0.3s;
 }
 
-.btn-info { top: 10px;}
-.btn-new { top: 55px;}
+.btn-info { left: 70px; top: 20px;}
+.btn-new { top: 23px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 

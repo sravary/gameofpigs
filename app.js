@@ -1,6 +1,6 @@
 
 // To keep track of player scores, round scores, current player(0 or 1)
-var scores, roundScores, activePlayer;
+var scores, roundScores, activePlayer, gamePlaying;
 
 // Run the game
 init();
@@ -19,51 +19,57 @@ document.querySelector('.btn-info').addEventListener('click', function() {
 
 // Select the ROLL DICE element
 document.querySelector('.btn-roll').addEventListener('click', function() {
-    // 1. We need a random number
-    var dice = Math.floor(Math.random() * 6) + 1;
-    // .floor will remove decimals,
-    // .random * 6 will give random num from 0 to 5,
-    // + 1 will make the num 1 to 6
+    if (gamePlaying) {
+        // 1. We need a random number
+        var dice = Math.floor(Math.random() * 6) + 1;
+        // .floor will remove decimals,
+        // .random * 6 will give random num from 0 to 5,
+        // + 1 will make the num 1 to 6
 
-    // 2. Display the result
-    var diceDOM = document.querySelector('.dice'); // so we don't have to make the selection over & over
-    diceDOM.style.display = 'block';
-    diceDOM.src = 'dice-' + dice + '.png';
+        // 2. Display the result
+        var diceDOM = document.querySelector('.dice'); // so we don't have to make the selection over & over
+        diceDOM.style.display = 'block';
+        diceDOM.src = 'dice-' + dice + '.png';
 
-    // 3. Update the Round Score only if the rolled number is NOT a 1
-    if(dice !== 1) {
-        // Add up the score
-        roundScore += dice;
-        // Now we need to select and display the score
-        document.querySelector('#current-' + activePlayer).textContent = roundScore; 
-    } else {
-        // Next player's turn
-        nextPlayer();
+        // 3. Update the Round Score only if the rolled number is NOT a 1
+        if(dice !== 1) {
+            // Add up the score
+            roundScore += dice;
+            // Now we need to select and display the score
+            document.querySelector('#current-' + activePlayer).textContent = roundScore; 
+        } else {
+            // Next player's turn
+            nextPlayer();
+        }
     }
 });
 
 // Select HOLD button and activate it
 document.querySelector('.btn-hold').addEventListener('click', function() {
-    // Add round score to player's global score
-    scores[activePlayer] += roundScore;
+    if (gamePlaying) {
+        // Add round score to player's global score
+        scores[activePlayer] += roundScore;
 
-    // Update the UI by selecting and displaying
-    document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+        // Update the UI by selecting and displaying
+        document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
-    // Check if current player won the game
-    if (scores[activePlayer] >= 100) {
-        // Select Player and change text to Winner
-        document.getElementById('name-' + activePlayer).textContent = 'WINNER!';
-        // Remove the dice image
-        document.querySelector('.dice').style.display = 'none';
-        // Display special css winner class
-        document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
-        // Remove the active css class as well
-        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+        // Check if current player won the game
+        if (scores[activePlayer] >= 100) {
+            // Select Player and change text to Winner
+            document.getElementById('name-' + activePlayer).textContent = 'WINNER!';
+            // Remove the dice image
+            document.querySelector('.dice').style.display = 'none';
+            // Display special css winner class
+            document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+            // Remove the active css class as well
+            document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+            // After there is a winner, we must stop the game
+            gamePlaying = false;
 
-    } else {
-        // Switch to next player
-        nextPlayer();
+        } else {
+            // Switch to next player
+            nextPlayer();
+        }
     }
 });
 
@@ -95,6 +101,8 @@ function init() {
     activePlayer = 0;
     // Reset the round score back to 0
     roundScore = 0;
+    // Set game as being played
+    gamePlaying = true;
 
     // This selects a CSS property and then changes it's value
     document.querySelector('.dice').style.display = 'none';

@@ -1,14 +1,3 @@
-/*
-GAME RULES:
-
-- This is a game of 2 players only.
-- In each turn, a player rolls a dice as many times as they wish. Each result gets added to their ROUND score.
-- BUT, if the player rolls a 1, all their ROUND score gets lost. After that, it's the next player's turn.
-- The player can choose to 'Hold', which means that their ROUND score gets added to their GLOBAL score. After that, it's the next player's turn.
-- The first player to reach 100 points on GLOBAL score wins the game.
-
-*/
-
 
 // To keep track of player scores, round scores, current player(0 or 1)
 var scores, roundScores, activePlayer;
@@ -141,10 +130,6 @@ document.querySelector('.btn-new').addEventListener('click', init);
 
 
 
-
-
-
-
 // NOTES TO SELF:
 // to get access to the DOM, use document object
 // document.querySelector('#current-' + activePlayer).textContent = dice;
@@ -152,34 +137,3 @@ document.querySelector('.btn-new').addEventListener('click', init);
 
 // This is to read (get) the element in the DOM and store it in a variable
 // var x = document.querySelector('#score-0').textContent;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

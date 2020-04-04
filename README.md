@@ -6,4 +6,5 @@ Rules of the Game:
 3. A player can click on HOLD, which adds their ROUND score to their GLOBAL score.
 4. The first player to reach a 100 GLOBAL points wins the game.
 
-# Good Luck!
+# Try your luck:
+https://thegameofpigs.netlify.com/
